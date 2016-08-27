@@ -407,10 +407,12 @@ lws_http_serve(struct lws *wsi, char *uri, const char *origin,
 			/* we don't need to send the payload */
 			if (lws_add_http_header_status(wsi, 304, &p, end))
 				return -1;
+
 			if (lws_add_http_header_by_token(wsi,
 					WSI_TOKEN_HTTP_ETAG,
 					(unsigned char *)sym, n, &p, end))
 				return -1;
+
 			if (lws_finalize_http_header(wsi, &p, end))
 				return -1;
 
